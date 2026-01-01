@@ -37,10 +37,30 @@ class Admin_Page {
             <form method="post" id="appcss-form">
                 <?php wp_nonce_field( 'apcss_generate' ); ?>
                 <table class="form-table">
-                    
+                    <tr>
+                        <th scope="row">
+                            Target CSS Selectors
+                        </th>
+                        <td>
+                            <input type="text"
+                                name="apcss_selectors"
+                                class="regular-text",
+                                placeholder=".featured-posts, .post-card, #main-nav" />
+                            <p class="description">
+                                Provide existing CSS selectors from your theme or page
+                            </p>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            Describe the style
+                        </th>
+                        <td>
+                           <textarea name="apcss_prompt" id="apcss_prompt" rows="5" class="large-text" 
+                                placeholder="Add something that I can convert to CSS. For example: 'Create a responsive Grid layout with 3 columns.'"></textarea>
+                        </td>
+                    </tr>
                 </table>
-                <textarea name="apcss_prompt" id="apcss_prompt" rows="5" class="large-text" 
-                    placeholder="Add something that I can convert to CSS. For example: 'Responsive navbar with hover glow'"></textarea>
                 <?php submit_button( 'Generate CSS' ); ?>
             </form>
         </div>
@@ -48,9 +68,29 @@ class Admin_Page {
         <?php
         if( isset( $_POST['apcss_prompt'] ) && check_admin_referer( 'apcss_generate' ) ) {
             $prompt = sanitize_textarea_field( wp_unslash( $_POST[ 'apcss_prompt' ] ) );
-            $css    = AI_Engine::generate_css( $prompt );
-            CSS_Injector::inject( $css, $prompt );
+            $selectors = sanitize_text_field( $_POST[ 'apcss_selectors' ] );
+
+            $final_prompt = self::build_prompt( $prompt, $selectors );
+
+            $css    = AI_Engine::generate_css( $final_prompt );
+            CSS_Injector::inject( $css, $final_prompt );
         }
+    }
+
+    public static function build_prompt( $prompt, $selectors ) {
+        $system_hint  = "Generate clean, minimal CSS only. ";
+        $system_hint .= "Use modern CSS (flexbox or grid). ";
+        $system_hint .= "Do not include font-family unless explicitly requested. ";
+        $system_hint .= "Avoid !important.";
+
+        if( ! empty( $selectors ) ) {
+            return "Target the following existing CSS selectors:\n"
+                . $selectors
+                . "\n\nTask:\n"
+                . $prompt;
+        }
+
+        return $prompt;
     }
 
     /**

@@ -18,3 +18,12 @@
     white-space: pre-wrap;
     margin-top: 15px;
 }
+
+#apcss-app .form-table th {
+    width: 200px;
+}
+
+#apcss-app .description {
+    font-size: 13px;
+    color: #6b7280;
+}
