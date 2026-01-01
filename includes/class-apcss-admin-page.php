@@ -33,17 +33,20 @@ class Admin_Page {
 
     public static function render() { ?>
         <div class="wrap">
-            <h1>Prompt -> CSS</h1>
+            <h1>AI Powered Prompt to CSS</h1>
+            <hr />
             <form method="post" id="appcss-form">
                 <?php wp_nonce_field( 'apcss_generate' ); ?>
                 <table class="form-table">
                     <tr>
                         <th scope="row">
-                            Target CSS Selectors
+                            Target CSS Selectors <span class="required">*</span>
                         </th>
                         <td>
                             <input type="text"
                                 name="apcss_selectors"
+                                id="apcss_selectors"
+                                required
                                 class="regular-text",
                                 placeholder=".featured-posts, .post-card, #main-nav" />
                             <p class="description">
@@ -53,23 +56,27 @@ class Admin_Page {
                     </tr>
                     <tr>
                         <th scope="row">
-                            Describe the style
+                            Describe the style <span class="required">*</span>
                         </th>
                         <td>
-                           <textarea name="apcss_prompt" id="apcss_prompt" rows="5" class="large-text" 
+                           <textarea required name="apcss_prompt" id="apcss_prompt" rows="5" class="large-text" 
                                 placeholder="Add something that I can convert to CSS. For example: 'Create a responsive Grid layout with 3 columns.'"></textarea>
                         </td>
                     </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <?php submit_button( 'Generate CSS' ); ?>
+                        </td>
+                    </tr>
                 </table>
-                <?php submit_button( 'Generate CSS' ); ?>
             </form>
         </div>
 
         <?php
-        if( isset( $_POST['apcss_prompt'] ) && check_admin_referer( 'apcss_generate' ) ) {
-            $prompt = sanitize_textarea_field( wp_unslash( $_POST[ 'apcss_prompt' ] ) );
-            $selectors = sanitize_text_field( $_POST[ 'apcss_selectors' ] );
-
+        if( isset( $_POST['apcss_prompt'] ) && isset( $_POST['apcss_selectors'] ) && check_admin_referer( 'apcss_generate' ) ) {
+            $prompt       = sanitize_textarea_field( wp_unslash( $_POST[ 'apcss_prompt' ] ) );
+            $selectors    = sanitize_text_field( wp_unslash( $_POST[ 'apcss_selectors' ] ) );
             $final_prompt = self::build_prompt( $prompt, $selectors );
 
             $css    = AI_Engine::generate_css( $final_prompt );
@@ -101,16 +108,18 @@ class Admin_Page {
     public static function render_settings_page() { ?>
         <div class="wrap" id="apcss-app">
             <h1>AI Prompt to CSS Settings</h1>
+            <hr />
             <form method="post" action="options.php">
                 <?php settings_fields( 'apcss_settings' ); ?>
                 <table class="form-table">
                     <tr>
-                        <th scope="row">OpenAI API Key</th>
+                        <th scope="row">Enter your OpenAI API Key <span class="required">*</span></th>
                         <td>
                             <input 
                                 type="password" 
                                 name="apcss_api_key" 
                                 id="apcss_api_key"
+                                required
                                 value="<?php echo esc_attr( get_option( 'apcss_api_key' ) ); ?>"
                                 class="regular-text" />
                             <p class="description">
@@ -118,8 +127,12 @@ class Admin_Page {
                             </p>    
                         </td>
                     </tr>
+                    <tr>
+                        <th colspan="2">
+                            <?php submit_button( 'Save API Key' ); ?>
+                        </th>
+                    </tr>
                 </table>
-                <?php submit_button( 'Save Key' ); ?>
             </form>
         </div>
     <?php }
