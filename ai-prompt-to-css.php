@@ -3,7 +3,7 @@
 /**
  * Plugin Name: AI Prompt to CSS
  * Plugin URI: https://github.com/emfluenceindia/ai-prompt-to-css
- * Description: Converts natural text into a clean, modern CSS
+ * Description: Converts human readable styling description into a clean, modern CSS block
  * Version: 1.0.0
  * 
  * Author: Subrata Sarkar

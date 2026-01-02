@@ -101,7 +101,7 @@ class Admin_Page {
             <table class="form-table">
                 <tr>
                     <th>
-                        <?php echo esc_html__( 'AI Prompt Custon CSS Content', 'ai-prompt-to-css' ); ?>
+                        <?php echo esc_html__( 'Custom CSS Content', 'ai-prompt-to-css' ); ?>
                     </th>
                     <td>
                         <textarea rows="30" name="apcss-custom-css-content" id="apcss-custom-css-content" class="large-text apcss-css-content-box" readonly><?php echo esc_attr( $css_content ); ?></textarea>
