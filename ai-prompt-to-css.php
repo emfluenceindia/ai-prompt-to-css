@@ -14,7 +14,6 @@
  * 
  * Text Domain: ai-prompt-to-css
  * Prefix: apcss
- * OpenAI API Key: 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
  */
 
 if( ! defined( 'ABSPATH' ) ) exit;
@@ -28,4 +27,16 @@ require_once APCSS_PATH . 'includes/class-apcss-loader.php';
 add_action( 'plugins_loaded', 'apcss_loader_init' );
 function apcss_loader_init() {
     \APCSS\Loader::init();
+}
+
+add_action( 'wp_enqueue_scripts', 'apcss_render_custom_css' );
+function apcss_render_custom_css() {
+    if( ! function_exists( 'wp_get_custom_css' ) ) return;
+
+    $custom_css = wp_get_custom_css( get_stylesheet() );
+    if( empty( trim( $custom_css ) ) ) return;
+
+    wp_register_style( 'apcss-generated-css', false );
+    wp_enqueue_style( 'apcss-generated-css' );
+    wp_add_inline_style( 'apcss-generated-css', $custom_css );
 }

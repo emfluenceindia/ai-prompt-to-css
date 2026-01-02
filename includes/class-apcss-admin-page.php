@@ -9,6 +9,7 @@ class Admin_Page {
         add_action( 'admin_menu', [ __CLASS__, 'menu' ] );
         add_action( 'admin_enqueue_scripts', [ __CLASS__, 'assets' ] );
         add_action( 'admin_init', [ __CLASS__, 'register_settings' ] );
+        add_action( 'admin_post_apcss_generate_css', [ __CLASS__, 'handle_generation' ] );
     }
 
     public static function menu() {
@@ -16,13 +17,13 @@ class Admin_Page {
             __( 'AI Prompt to CSS', 'ai-prompt-to-css' ),
             __( 'AI Prompt to CSS', 'ai-prompt-to-css' ),
             'manage_options',
-            'apcss',
+            'ai-prompt-to-css',
             [ __CLASS__, 'render' ],
             'dashicons-code-standards'
         );
 
         add_submenu_page(
-            'apcss',
+            'ai-prompt-to-css',
             'Settings',
             'Settings',
             'manage_options',
@@ -35,7 +36,21 @@ class Admin_Page {
         <div class="wrap">
             <h1>AI Powered Prompt to CSS</h1>
             <hr />
-            <form method="post" id="appcss-form">
+            <?php if( isset( $_GET[ 'apcss_success' ] ) ) { ?>
+                <div class="notice notice-sucess">
+                    <p>CSS successfully added to Additional CSS.</p>
+                </div>
+            <?php } ?>
+
+            <?php if( isset( $_GET[ 'apcss_error' ] ) ) { ?>
+                <div class="notice notice-error">
+                    <p>CSS generation failed!</p>
+                </div>
+            <?php } ?>
+
+            <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" id="appcss-form">
+                <input type="hidden" name="action" value="apcss_generate_css" />
+            
                 <?php wp_nonce_field( 'apcss_generate' ); ?>
                 <table class="form-table">
                     <tr>
@@ -48,7 +63,7 @@ class Admin_Page {
                                 id="apcss_selectors"
                                 required
                                 class="regular-text",
-                                placeholder=".featured-posts, .post-card, #main-nav" />
+                                placeholder=".wp-block-page-list a, .featured-posts, .post-card, #main-nav" />
                             <p class="description">
                                 Provide existing CSS selectors from your theme or page
                             </p>    
@@ -71,6 +86,28 @@ class Admin_Page {
                     </tr>
                 </table>
             </form>
+            <?php
+            // Fetch current custom CSS block from table and show a readonly manner below
+            $stored_css = get_posts(
+                array(
+                    'post_type'      => 'custom_css',
+                    'title'          => get_stylesheet(),
+                    'posts_per_page' => 1
+                )
+            );
+
+            $css_content = ! empty( $stored_css ) ? $stored_css[0]->post_content : '';
+            ?>
+            <table class="form-table">
+                <tr>
+                    <th>
+                        AI Prompt Custon CSS Content
+                    </th>
+                    <td>
+                        <textarea rows="30" name="apcss-custom-css-content" id="apcss-custom-css-content" class="large-text apcss-css-content-box" readonly><?php echo $css_content; ?></textarea>
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <?php
@@ -82,6 +119,32 @@ class Admin_Page {
             $css    = AI_Engine::generate_css( $final_prompt );
             CSS_Injector::inject( $css, $final_prompt );
         }
+    }
+
+    public static function handle_generation() {
+        if( ! current_user_can( 'edit_theme_options' ) || ! check_admin_referer( 'apcss_generate' ) ) {
+            wp_die( 'Unauthorized' );
+        }
+
+        $selector = sanitize_text_field( 
+            wp_unslash( $_POST[ 'apcss_selectors' ] ?? '' ) 
+        );
+
+        $prompt   = sanitize_text_field( 
+            wp_unslash( $_POST[ 'apcss_prompt' ] ?? '' ) 
+        );
+
+        if( empty( $selector ) || empty ( $prompt ) ) {
+            wp_redirect( add_query_arg( 'apcss_error', 1, wp_get_referer() ) );
+            exit;
+        }
+
+        $css = AI_Engine::generate_css( "Generate CSS for selector {$selector} . {$prompt}" );
+
+        CSS_Injector::inject( $css, $prompt );
+
+        wp_redirect( add_query_arg( 'apcss_success', 1, wp_get_referer() ) );
+        exit;
     }
 
     public static function build_prompt( $prompt, $selectors ) {
@@ -140,9 +203,7 @@ class Admin_Page {
         </div>
     <?php }
 
-    public static function assets( $hook ) {
-        if( $hook !== 'toplevel_page_apcss' ) return;
-
+    public static function assets() {
         wp_enqueue_style(
             'apcss-admin',
             APCSS_URL . 'assets/admin.css',

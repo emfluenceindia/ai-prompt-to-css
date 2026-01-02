@@ -27,3 +27,7 @@
     font-size: 13px;
     color: #6b7280;
 }
+
+.apcss-css-content-box {
+    font-family:'Courier New', Courier, monospace !important;
+}

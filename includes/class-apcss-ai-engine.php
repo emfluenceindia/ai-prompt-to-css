@@ -22,7 +22,7 @@ class AI_Engine {
                     Output must contain at least one CSS rule.'
                 ),
                 array(
-                    'role' => 'user',
+                    'role'    => 'user',
                     'content' => $prompt
                 )
             ),
@@ -33,10 +33,10 @@ class AI_Engine {
             array(
                 'headers' => array(
                     'Authorization' => 'Bearer ' . $api_key,
-                    'Content-Type' => 'application/json',
+                    'Content-Type'  => 'application/json',
                 ),
-                'body' => wp_json_encode( $body ),
-                'timeout' => 30
+                'body'              => wp_json_encode( $body ),
+                'timeout'           => 30
             )
         );
 
