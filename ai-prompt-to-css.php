@@ -51,3 +51,11 @@ function apcss_render_custom_css() {
     wp_enqueue_style( 'apcss-generated-css' );
     wp_add_inline_style( 'apcss-generated-css', $custom_css );
 }
+
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'apcss_settings_link' );
+function apcss_settings_link( $links ) {
+    $settings_link = '<a href="' . admin_url( 'admin.php?page=apcss-settings' ) . '">' . esc_html__( 'Settings', 'ai-prompt-to-css' ) . '</a>';
+    array_unshift( $links, $settings_link );
+
+    return $links;
+}
