@@ -18,7 +18,7 @@ class Admin_Page {
             'manage_options',
             'apcss',
             [ __CLASS__, 'render' ],
-            'dashicon-admin-customizer'
+            'dashicons-code-standards'
         );
 
         add_submenu_page(
@@ -110,7 +110,10 @@ class Admin_Page {
             <h1>AI Prompt to CSS Settings</h1>
             <hr />
             <form method="post" action="options.php">
-                <?php settings_fields( 'apcss_settings' ); ?>
+                <?php
+                settings_fields( 'apcss_settings' );
+                $apcss_api_key = get_option( 'apcss_api_key' );
+                ?>
                 <table class="form-table">
                     <tr>
                         <th scope="row">Enter your OpenAI API Key <span class="required">*</span></th>
@@ -120,11 +123,11 @@ class Admin_Page {
                                 name="apcss_api_key" 
                                 id="apcss_api_key"
                                 required
-                                value="<?php echo esc_attr( get_option( 'apcss_api_key' ) ); ?>"
                                 class="regular-text" />
                             <p class="description">
+                                <?php echo $apcss_api_key ? '<p style="color: #059669; font-weight: 500;">API key is configured. You are good to go!</p>' : '<p style="color: #cc0000; font-weight: 500;">No API Key found. Enter a valid key to start.</p>'; ?>
                                 Your API key is stored securely and never exposed.
-                            </p>    
+                            </p>
                         </td>
                     </tr>
                     <tr>
