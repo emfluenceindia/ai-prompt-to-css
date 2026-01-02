@@ -104,7 +104,7 @@ class Admin_Page {
                         AI Prompt Custon CSS Content
                     </th>
                     <td>
-                        <textarea rows="30" name="apcss-custom-css-content" id="apcss-custom-css-content" class="large-text apcss-css-content-box" readonly><?php echo $css_content; ?></textarea>
+                        <textarea rows="30" name="apcss-custom-css-content" id="apcss-custom-css-content" class="large-text apcss-css-content-box" readonly><?php echo esc_attr( $css_content ); ?></textarea>
                     </td>
                 </tr>
             </table>
@@ -135,7 +135,7 @@ class Admin_Page {
         );
 
         if( empty( $selector ) || empty ( $prompt ) ) {
-            wp_redirect( add_query_arg( 'apcss_error', 1, wp_get_referer() ) );
+            wp_safe_redirect( add_query_arg( 'apcss_error', 1, wp_get_referer() ) );
             exit;
         }
 
@@ -143,7 +143,7 @@ class Admin_Page {
 
         CSS_Injector::inject( $css, $prompt );
 
-        wp_redirect( add_query_arg( 'apcss_success', 1, wp_get_referer() ) );
+        wp_safe_redirect( add_query_arg( 'apcss_success', 1, wp_get_referer() ) );
         exit;
     }
 

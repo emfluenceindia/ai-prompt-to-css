@@ -36,7 +36,7 @@ function apcss_render_custom_css() {
     $custom_css = wp_get_custom_css( get_stylesheet() );
     if( empty( trim( $custom_css ) ) ) return;
 
-    wp_register_style( 'apcss-generated-css', false );
+    wp_register_style( 'apcss-generated-css', false, array(), '1.0.0', 'screen'  );
     wp_enqueue_style( 'apcss-generated-css' );
     wp_add_inline_style( 'apcss-generated-css', $custom_css );
 }
