@@ -1,4 +1,4 @@
-# AI Prompt to CSS Generator
+# AI Prompt to CSS
 
 Transform natural language prompts into production‑ready CSS styles directly inside WordPress.  This plugin leverages AI to convert human‑readable instructions (e.g., *“Make the anchor text red with a smooth underline on hover”*) into valid CSS rules that are automatically injected into your theme.
 
