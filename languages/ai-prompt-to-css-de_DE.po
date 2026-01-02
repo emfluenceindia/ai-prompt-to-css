@@ -1,0 +1,90 @@
+# Copyright (C) 2026 Subrata Sarkar
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: AI Prompt to CSS 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ai-prompt-to-css\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-01-02T12:48:09+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: ai-prompt-to-css\n"
+
+#. Plugin Name of the plugin
+#: ai-prompt-to-css.php
+#: includes/class-apcss-admin-page.php:17
+#: includes/class-apcss-admin-page.php:18
+msgid "AI Prompt to CSS"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: ai-prompt-to-css.php
+msgid "https://github.com/emfluenceindia/ai-prompt-to-css"
+msgstr ""
+
+#. Description of the plugin
+#: ai-prompt-to-css.php
+msgid "Converts natural text into a clean, modern CSS"
+msgstr ""
+
+#. Author of the plugin
+#: ai-prompt-to-css.php
+msgid "Subrata Sarkar"
+msgstr ""
+
+#. Author URI of the plugin
+#: ai-prompt-to-css.php
+msgid "https://profiles.wordpress.org/subrataemfluence"
+msgstr ""
+
+#: includes/class-apcss-admin-page.php:41
+msgid "CSS successfully added to Additional CSS."
+msgstr ""
+
+#: includes/class-apcss-admin-page.php:47
+msgid "CSS generation failed!"
+msgstr ""
+
+#: includes/class-apcss-admin-page.php:58
+msgid "Target CSS Selectors"
+msgstr ""
+
+#: includes/class-apcss-admin-page.php:68
+msgid "Provide existing CSS selectors from your theme or page"
+msgstr ""
+
+#: includes/class-apcss-admin-page.php:74
+msgid "Describe the style"
+msgstr ""
+
+#: includes/class-apcss-admin-page.php:104
+msgid "AI Prompt Custon CSS Content"
+msgstr ""
+
+#: includes/class-apcss-admin-page.php:173
+msgid "AI Prompt to CSS Settings"
+msgstr ""
+
+#: includes/class-apcss-admin-page.php:182
+msgid "Enter your OpenAI API Key"
+msgstr ""
+
+#: includes/class-apcss-admin-page.php:191
+msgid "API key is configured. You are good to go!"
+msgstr ""
+
+#: includes/class-apcss-admin-page.php:191
+msgid "No API Key found! Enter a valid key to start."
+msgstr ""
+
+#: includes/class-apcss-admin-page.php:192
+msgid "Your API key is stored securely and never exposed."
+msgstr ""
+
+#: includes/class-apcss-ai-engine.php:12
+msgid "You are a CSS generator. Return ONLY valid CSS rules. Do NOT include explanations, markdown, or comments. If selectors are provided, use them exactly. If hover behavior is requested, use :hover. Output must contain at least one CSS rule."
+msgstr ""
