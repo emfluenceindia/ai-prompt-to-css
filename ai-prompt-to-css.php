@@ -14,6 +14,8 @@
  * 
  * Text Domain: ai-prompt-to-css
  * Prefix: apcss
+ * 
+ * Domain Path: /languages
  */
 
 if( ! defined( 'ABSPATH' ) ) exit;

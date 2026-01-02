@@ -38,13 +38,13 @@ class Admin_Page {
             <hr />
             <?php if( isset( $_GET[ 'apcss_success' ] ) ) { ?>
                 <div class="notice notice-sucess">
-                    <p>CSS successfully added to Additional CSS.</p>
+                    <p><?php echo esc_html__( 'CSS successfully added to Additional CSS.', 'ai-prompt-to-css' ); ?></p>
                 </div>
             <?php } ?>
 
             <?php if( isset( $_GET[ 'apcss_error' ] ) ) { ?>
                 <div class="notice notice-error">
-                    <p>CSS generation failed!</p>
+                    <p><?php echo esc_html__( 'CSS generation failed!', 'ai-prompt-to-css' ); ?></p>
                 </div>
             <?php } ?>
 
@@ -55,7 +55,7 @@ class Admin_Page {
                 <table class="form-table">
                     <tr>
                         <th scope="row">
-                            Target CSS Selectors <span class="required">*</span>
+                            <?php echo esc_html__( 'Target CSS Selectors', 'ai-prompt-to-css' ); ?> <span class="required">*</span>
                         </th>
                         <td>
                             <input type="text"
@@ -65,13 +65,13 @@ class Admin_Page {
                                 class="regular-text",
                                 placeholder=".wp-block-page-list a, .featured-posts, .post-card, #main-nav" />
                             <p class="description">
-                                Provide existing CSS selectors from your theme or page
+                                <?php echo esc_html__( 'Provide existing CSS selectors from your theme or page', 'ai-prompt-to-css' ); ?>
                             </p>    
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">
-                            Describe the style <span class="required">*</span>
+                            <?php echo esc_html__( 'Describe the style', 'ai-prompt-to-css' ); ?> <span class="required">*</span>
                         </th>
                         <td>
                            <textarea required name="apcss_prompt" id="apcss_prompt" rows="5" class="large-text" 
@@ -101,7 +101,7 @@ class Admin_Page {
             <table class="form-table">
                 <tr>
                     <th>
-                        AI Prompt Custon CSS Content
+                        <?php echo esc_html__( 'AI Prompt Custon CSS Content', 'ai-prompt-to-css' ); ?>
                     </th>
                     <td>
                         <textarea rows="30" name="apcss-custom-css-content" id="apcss-custom-css-content" class="large-text apcss-css-content-box" readonly><?php echo esc_attr( $css_content ); ?></textarea>
@@ -116,7 +116,7 @@ class Admin_Page {
             $selectors    = sanitize_text_field( wp_unslash( $_POST[ 'apcss_selectors' ] ) );
             $final_prompt = self::build_prompt( $prompt, $selectors );
 
-            $css    = AI_Engine::generate_css( $final_prompt );
+            $css          = AI_Engine::generate_css( $final_prompt );
             CSS_Injector::inject( $css, $final_prompt );
         }
     }
@@ -170,7 +170,7 @@ class Admin_Page {
      */
     public static function render_settings_page() { ?>
         <div class="wrap" id="apcss-app">
-            <h1>AI Prompt to CSS Settings</h1>
+            <h1><?php echo esc_html__( 'AI Prompt to CSS Settings', 'ai-prompt-to-css' ); ?></h1>
             <hr />
             <form method="post" action="options.php">
                 <?php
@@ -179,7 +179,7 @@ class Admin_Page {
                 ?>
                 <table class="form-table">
                     <tr>
-                        <th scope="row">Enter your OpenAI API Key <span class="required">*</span></th>
+                        <th scope="row"><?php echo esc_html__( 'Enter your OpenAI API Key', 'ai-prompt-to-css' ); ?> <span class="required">*</span></th>
                         <td>
                             <input 
                                 type="password" 
@@ -188,8 +188,8 @@ class Admin_Page {
                                 required
                                 class="regular-text" />
                             <p class="description">
-                                <?php echo $apcss_api_key ? '<p style="color: #059669; font-weight: 500;">API key is configured. You are good to go!</p>' : '<p style="color: #cc0000; font-weight: 500;">No API Key found. Enter a valid key to start.</p>'; ?>
-                                Your API key is stored securely and never exposed.
+                                <?php echo $apcss_api_key ? '<p style="color: #059669; font-weight: 500;">' . esc_html__( 'API key is configured. You are good to go!', 'ai-prompt-to-css' ) . '</p>' : '<p style="color: #cc0000; font-weight: 500;">' . esc_html__( 'No API Key found! Enter a valid key to start.', 'ai-prompt-to-css' ) . '</p>'; ?>
+                                <?php echo esc_html__( 'Your API key is stored securely and never exposed.', 'ai-prompt-to-css' ); ?>
                             </p>
                         </td>
                     </tr>
