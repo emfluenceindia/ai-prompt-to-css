@@ -13,8 +13,13 @@ class AI_Engine {
             'model' => 'gpt-4o-mini',
             'messages' => array(
                 array(
-                    'role' => 'system',
-                    'content' => 'Generate clean, minimal, production-ready CSS only'
+                    'role'    => 'system',
+                    'content' => 'You are a CSS generator. 
+                    Return ONLY valid CSS rules. 
+                    Do NOT include explanations, markdown, or comments. 
+                    If selectors are provided, use them exactly. 
+                    If hover behavior is requested, use :hover. 
+                    Output must contain at least one CSS rule.'
                 ),
                 array(
                     'role' => 'user',
