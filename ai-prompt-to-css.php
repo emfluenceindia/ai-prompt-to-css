@@ -13,9 +13,9 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * 
  * Text Domain: ai-prompt-to-css
- * Prefix: apcss
- * 
  * Domain Path: /languages
+ * 
+ * Prefix: apcss
  */
 
 if( ! defined( 'ABSPATH' ) ) exit;
@@ -28,15 +28,6 @@ require_once APCSS_PATH . 'includes/class-apcss-loader.php';
 
 add_action( 'plugins_loaded', 'apcss_loader_init' );
 function apcss_loader_init() {
-    
-    //Load plugin text domain (i18n)
-    load_plugin_textdomain(
-        'ai-prompt-to-css', 
-        false, 
-        dirname( plugin_basename( __FILE__ ) ) . '/languages/'
-    );
-
-    //Call Loader init()
     \APCSS\Loader::init();
 }
 
