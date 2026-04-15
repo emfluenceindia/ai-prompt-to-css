@@ -1,6 +1,6 @@
 === AI Prompt to CSS ===
 Contributors: subrataemfluence
-Tags: custom CSS, AI-powered, CSS generator, developer, Text to CSS, AI CSS generator 
+Tags: custom CSS, AI-powered CSS generator, Prompt to CSS, AI CSS generator 
 Requires at least: 6.3
 Tested up to: 6.9
 Requires PHP: 7.4
