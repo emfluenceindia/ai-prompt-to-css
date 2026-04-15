@@ -29,12 +29,11 @@ This plugin requires an OpenAI key. Please add and validate your key in the sett
 This plugin never tracks or stores your location or any private data anywhere.
 
 == External services ==
-This plugin connects to a third-party OpenAI service through an API key.
-It accepts a human-readable prompt and passes it on to OpenAI using the API.
-OpenAI then analyzes the prompt, generates the CSS, and sends it back to the plugin.
-The plugin then stores the CSS in the wp_posts table under the custom_css post type.
-The OpenAI API service is primarily provided by OpenAI itself. 
-through its platform at platform.openai.com.
+This plugin connects to an external API to generate custom CSS based on user-provided prompts. This connection is necessary to process natural language and return functional CSS code that is stored and applied within your WordPress site.
+
+It sends a human-readable prompt to the OpenAI API service whenever a user initiates a request through the plugin interface. No data is sent without a user-triggered action.
+
+This service is provided by OpenAI: Terms of Use (https://openai.com/policies/terms-of-use), Privacy Policy (https://openai.com/policies/privacy-policy).
 
 == Frequently Asked Questions ==
 = Does this plugin work with all themes? =
