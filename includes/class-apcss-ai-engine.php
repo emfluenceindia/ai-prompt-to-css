@@ -9,7 +9,7 @@ class AI_Engine {
         $api_key = get_option( 'apcss_api_key' );
         if( ! $api_key ) return;
 
-        $ai_instruction = esc_html__( 'You are a CSS generator. Return ONLY valid CSS rules. Do NOT include explanations, markdown, or comments. If selectors are provided, use them exactly. If hover behavior is requested, use :hover. Output must contain at least one CSS rule.', 'ai-prompt-to-css' );
+        $ai_instruction = esc_html__( 'You are a CSS generator. Return ONLY valid CSS rules. Do NOT include explanations, markdown, or comments. If selectors are provided, use them exactly. If hover behavior is requested, use :hover. Output must contain at least one CSS rule.', 'convert-text-to-css' );
 
         $body = array(
             'model' => 'gpt-4o-mini',

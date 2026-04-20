@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AI Prompt to CSS 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ai-prompt-to-css\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/convert-text-to-css\n"
 "Last-Translator: \n"
 "Language-Team: Bengali (India)\n"
 "MIME-Version: 1.0\n"
@@ -12,34 +12,34 @@ msgstr ""
 "POT-Creation-Date: 2026-01-02T12:48:09+00:00\n"
 "PO-Revision-Date: 2026-01-02 13:08+0000\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Domain: ai-prompt-to-css\n"
+"X-Domain: convert-text-to-css\n"
 "Language: bn_IN\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Loco-Version: 2.8.0; wp-6.9; php-7.4.33"
 
 #. Plugin Name of the plugin
-#: ai-prompt-to-css.php includes/class-apcss-admin-page.php:17
+#: convert-text-to-css.php includes/class-apcss-admin-page.php:17
 #: includes/class-apcss-admin-page.php:18
 msgid "AI Prompt to CSS"
 msgstr "এআই প্রম্পট টু সিএসএস"
 
 #. Plugin URI of the plugin
-#: ai-prompt-to-css.php
-msgid "https://github.com/emfluenceindia/ai-prompt-to-css"
+#: convert-text-to-css.php
+msgid "https://github.com/emfluenceindia/convert-text-to-css"
 msgstr ""
 
 #. Description of the plugin
-#: ai-prompt-to-css.php
+#: convert-text-to-css.php
 msgid "Converts natural text into a clean, modern CSS"
 msgstr "মানুষের পঠনযোগ্য টেক্সটকে একটি পরিষ্কার, আধুনিক CSS-এ রূপান্তর করে"
 
 #. Author of the plugin
-#: ai-prompt-to-css.php
+#: convert-text-to-css.php
 msgid "Subrata Sarkar"
 msgstr "সুব্রত সরকার"
 
 #. Author URI of the plugin
-#: ai-prompt-to-css.php
+#: convert-text-to-css.php
 msgid "https://profiles.wordpress.org/subrataemfluence"
 msgstr ""
 

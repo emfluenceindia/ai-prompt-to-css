@@ -19,4 +19,4 @@ Transform natural language prompts into production‑ready CSS styles directly i
 
 1. Download or clone this repository:
    ```bash
-   git clone https://github.com/emfluenceindia/ai-prompt-to-css.git
+   git clone https://github.com/emfluenceindia/convert-text-to-css.git

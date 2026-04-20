@@ -21,7 +21,7 @@ Tell the plugin what you want, and AI Prompt to CSS does the rest!
 * Admin Notifications: The plugin displays proper notices on success and failures.
 
 == Installation ==
-1. Upload the `ai-prompt-to-css` folder to the `/wp-content/plugins/` directory.
+1. Upload the `convert-text-to-css` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Setup and Security ==

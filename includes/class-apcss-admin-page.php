@@ -14,16 +14,16 @@ class Admin_Page {
 
     public static function menu() {
         add_menu_page(
-            __( 'AI Prompt to CSS', 'ai-prompt-to-css' ),
-            __( 'AI Prompt to CSS', 'ai-prompt-to-css' ),
+            __( 'AI Prompt to CSS', 'convert-text-to-css' ),
+            __( 'AI Prompt to CSS', 'convert-text-to-css' ),
             'manage_options',
-            'ai-prompt-to-css',
+            'convert-text-to-css',
             [ __CLASS__, 'render' ],
             'dashicons-code-standards'
         );
 
         add_submenu_page(
-            'ai-prompt-to-css',
+            'convert-text-to-css',
             'Settings',
             'Settings',
             'manage_options',
@@ -34,17 +34,17 @@ class Admin_Page {
 
     public static function render() { ?>
         <div class="wrap">
-            <h1>AI Powered Prompt to CSS</h1>
+            <h1><?php echo esc_html__( 'Convert Text to CSS', 'convert-text-to-css' ); ?></h1>
             <hr />
             <?php if( isset( $_GET[ 'apcss_success' ] ) ) { ?>
                 <div class="notice notice-sucess">
-                    <p><?php echo esc_html__( 'CSS successfully added to Additional CSS.', 'ai-prompt-to-css' ); ?></p>
+                    <p><?php echo esc_html__( 'CSS successfully added to Additional CSS.', 'convert-text-to-css' ); ?></p>
                 </div>
             <?php } ?>
 
             <?php if( isset( $_GET[ 'apcss_error' ] ) ) { ?>
                 <div class="notice notice-error">
-                    <p><?php echo esc_html__( 'CSS generation failed!', 'ai-prompt-to-css' ); ?></p>
+                    <p><?php echo esc_html__( 'CSS generation failed!', 'convert-text-to-css' ); ?></p>
                 </div>
             <?php } ?>
 
@@ -55,7 +55,7 @@ class Admin_Page {
                 <table class="form-table">
                     <tr>
                         <th scope="row">
-                            <?php echo esc_html__( 'Target CSS Selectors', 'ai-prompt-to-css' ); ?> <span class="required">*</span>
+                            <?php echo esc_html__( 'Target CSS Selectors', 'convert-text-to-css' ); ?> <span class="required">*</span>
                         </th>
                         <td>
                             <input type="text"
@@ -65,13 +65,13 @@ class Admin_Page {
                                 class="regular-text",
                                 placeholder=".wp-block-page-list a, .featured-posts, .post-card, #main-nav" />
                             <p class="description">
-                                <?php echo esc_html__( 'Provide existing CSS selectors from your theme or page', 'ai-prompt-to-css' ); ?>
+                                <?php echo esc_html__( 'Provide existing CSS selectors from your theme or page', 'convert-text-to-css' ); ?>
                             </p>    
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">
-                            <?php echo esc_html__( 'Describe the style', 'ai-prompt-to-css' ); ?> <span class="required">*</span>
+                            <?php echo esc_html__( 'Describe the style', 'convert-text-to-css' ); ?> <span class="required">*</span>
                         </th>
                         <td>
                            <textarea required name="apcss_prompt" id="apcss_prompt" rows="5" class="large-text" 
@@ -101,7 +101,7 @@ class Admin_Page {
             <table class="form-table">
                 <tr>
                     <th>
-                        <?php echo esc_html__( 'Custom CSS Content', 'ai-prompt-to-css' ); ?>
+                        <?php echo esc_html__( 'Generated CSS', 'convert-text-to-css' ); ?>
                     </th>
                     <td>
                         <textarea rows="30" name="apcss-custom-css-content" id="apcss-custom-css-content" class="large-text apcss-css-content-box" readonly><?php echo esc_attr( $css_content ); ?></textarea>
@@ -170,7 +170,7 @@ class Admin_Page {
      */
     public static function render_settings_page() { ?>
         <div class="wrap" id="apcss-app">
-            <h1><?php echo esc_html__( 'AI Prompt to CSS Settings', 'ai-prompt-to-css' ); ?></h1>
+            <h1><?php echo esc_html__( 'AI Prompt to CSS Settings', 'convert-text-to-css' ); ?></h1>
             <hr />
             <form method="post" action="options.php">
                 <?php
@@ -179,7 +179,7 @@ class Admin_Page {
                 ?>
                 <table class="form-table">
                     <tr>
-                        <th scope="row"><?php echo esc_html__( 'Enter your OpenAI API Key', 'ai-prompt-to-css' ); ?> <span class="required">*</span></th>
+                        <th scope="row"><?php echo esc_html__( 'Enter your OpenAI API Key', 'convert-text-to-css' ); ?> <span class="required">*</span></th>
                         <td>
                             <input 
                                 type="password" 
@@ -188,8 +188,8 @@ class Admin_Page {
                                 required
                                 class="regular-text" />
                             <p class="description">
-                                <?php echo $apcss_api_key ? '<p style="color: #059669; font-weight: 500;">' . esc_html__( 'API key is configured. You are good to go!', 'ai-prompt-to-css' ) . '</p>' : '<p style="color: #cc0000; font-weight: 500;">' . esc_html__( 'No API Key found! Enter a valid key to start.', 'ai-prompt-to-css' ) . '</p>'; ?>
-                                <?php echo esc_html__( 'Your API key is stored securely and never exposed.', 'ai-prompt-to-css' ); ?>
+                                <?php echo $apcss_api_key ? '<p style="color: #059669; font-weight: 500;">' . esc_html__( 'API key is configured. You are good to go!', 'convert-text-to-css' ) . '</p>' : '<p style="color: #cc0000; font-weight: 500;">' . esc_html__( 'No API Key found! Enter a valid key to start.', 'convert-text-to-css' ) . '</p>'; ?>
+                                <?php echo esc_html__( 'Your API key is stored securely and never exposed.', 'convert-text-to-css' ); ?>
                             </p>
                         </td>
                     </tr>

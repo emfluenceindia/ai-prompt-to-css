@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Plugin Name: AI Prompt to CSS
- * Plugin URI: https://github.com/emfluenceindia/ai-prompt-to-css
+ * Plugin Name: Convert text to CSS
+ * Plugin URI: https://github.com/emfluenceindia/convert-text-to-css
  * Description: Converts human readable styling description into a clean, modern CSS block
  * Version: 1.0.0
  * 
  * Author: Subrata Sarkar
- * Author URI: https://profiles.wordpress.org/subrataemfluence
+ * Author URI: https://subratasarkar.com
  * 
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * 
- * Text Domain: ai-prompt-to-css
+ * Text Domain: convert-text-to-css
  * Domain Path: /languages
  * 
  * Prefix: apcss
@@ -45,7 +45,7 @@ function apcss_render_custom_css() {
 
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'apcss_settings_link' );
 function apcss_settings_link( $links ) {
-    $settings_link = '<a href="' . admin_url( 'admin.php?page=apcss-settings' ) . '">' . esc_html__( 'Settings', 'ai-prompt-to-css' ) . '</a>';
+    $settings_link = '<a href="' . admin_url( 'admin.php?page=apcss-settings' ) . '">' . esc_html__( 'Settings', 'convert-text-to-css' ) . '</a>';
     array_unshift( $links, $settings_link );
 
     return $links;
